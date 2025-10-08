@@ -12,11 +12,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // 3) @ComponentScan : 현재 패키지 기준 하위 패키지를 스캔하여 @Component/@Service/@Repository/@Controller 등을 빈으로 등록
 @SpringBootApplication
 public class UserServiceApplication {
-
 	// 자바 애플리케이션의 시작점 (프로그램 시작 시 가장 먼저 호출되는 메서드)
 	public static void main(String[] args) {
 		// SpringApplication.run: 스프링 컨테이너를 생성하고 내장 톰캣을 띄우며 애플리케이션을 실행
 		SpringApplication.run(UserServiceApplication.class, args);
 	}
-
 }

@@ -1,18 +1,23 @@
 // 패키지: controller 계층 (사용자 요청을 받는 웹 레이어)
 package com.example.userservice.controller;
 
+import java.util.List;
 // HTTP 응답을 만들 때 사용하는 객체 (상태코드/헤더/바디 포함 가능)
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 // HTTP POST 요청을 매핑하기 위한 애노테이션
 import org.springframework.web.bind.annotation.PostMapping;
 // HTTP 요청 본문(JSON 등)을 자바 객체로 변환하여 매개변수에 바인딩
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 // 클래스 레벨에서 공통 URL 경로를 지정
 import org.springframework.web.bind.annotation.RequestMapping;
 // 이 클래스가 REST API 컨트롤러임을 알리는 애노테이션 (@Controller + @ResponseBody)
 import org.springframework.web.bind.annotation.RestController;
 // 회원가입 요청 데이터를 담는 DTO (클라이언트 -> 서버 전달용)
 import com.example.userservice.dto.SignUpRequestDto;
+import com.example.userservice.dto.UserResponseDto;
 // 비즈니스 로직을 수행하는 서비스 계층
 import com.example.userservice.service.UserService;
 
@@ -39,5 +44,20 @@ public class UserController {
     userService.signUp(signUpRequestDto);
     // 내용 없는 204 No Content 응답 반환 (성공했지만 바디 보낼 필요 없음)
     return ResponseEntity.noContent().build();
+  }
+
+  // GET /users?ids=1,2,3 요청을 처리 (여러 사용자 정보 조회)
+  @GetMapping()
+  public ResponseEntity<List<UserResponseDto>> getUsersByIds(
+      @RequestParam List<Long> ids
+  ) {
+    List<UserResponseDto> userResponseDtos = userService.getUsersByIds(ids);
+    return ResponseEntity.ok(userResponseDtos);
+  }
+
+  @GetMapping("{userId}")
+  public ResponseEntity<UserResponseDto> getUser(@PathVariable Long userId) {
+    UserResponseDto userResponseDto = userService.getUser(userId);
+    return ResponseEntity.ok(userResponseDto);
   }
 }

@@ -15,11 +15,8 @@ public class User {
   @Id                                           // 기본키(Primary Key) 필드
   @GeneratedValue(strategy = GenerationType.IDENTITY) // DB의 AUTO_INCREMENT( MySQL 등 ) 전략 사용
   private Long userId;                          // 사용자 고유 식별자
-
   private String email;                         // 이메일 (로그인 ID로 사용 가능)
-
   private String name;                          // 사용자 이름
-
   private String password;                      // 비밀번호 (실서비스에서는 반드시 암호화 필요)
 
   public User() {                               // JPA가 프록시 생성 시 필요 (기본 생성자 필수)
