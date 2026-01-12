@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(java:*)",
+      "Bash(gradle clean build:*)",
+      "Bash(./gradlew clean build:*)"
+    ]
+  }
+}

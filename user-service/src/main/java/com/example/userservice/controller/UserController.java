@@ -49,14 +49,14 @@ public class UserController {
   // GET /users?ids=1,2,3 요청을 처리 (여러 사용자 정보 조회)
   @GetMapping()
   public ResponseEntity<List<UserResponseDto>> getUsersByIds(
-      @RequestParam List<Long> ids
+      @RequestParam("ids") List<Long> ids
   ) {
     List<UserResponseDto> userResponseDtos = userService.getUsersByIds(ids);
     return ResponseEntity.ok(userResponseDtos);
   }
 
   @GetMapping("{userId}")
-  public ResponseEntity<UserResponseDto> getUser(@PathVariable Long userId) {
+  public ResponseEntity<UserResponseDto> getUser(@PathVariable("userId") Long userId) {
     UserResponseDto userResponseDto = userService.getUser(userId);
     return ResponseEntity.ok(userResponseDto);
   }

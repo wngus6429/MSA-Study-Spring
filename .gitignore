@@ -1,0 +1,24 @@
+# Java 빌드 결과물
+*.class
+*.jar
+*.war
+
+# 빌드 폴더
+build/
+bin/
+out/
+
+# Gradle 관련
+.gradle/
+gradle/wrapper/
+
+# IDE 설정 (IntelliJ, Eclipse 등)
+.idea/
+*.iml
+.settings/
+.classpath
+.project
+
+# OS 관련
+.DS_Store
+Thumbs.db
